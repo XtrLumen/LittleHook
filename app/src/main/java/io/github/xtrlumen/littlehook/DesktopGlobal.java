@@ -19,9 +19,7 @@ public class DesktopGlobal {
         ClassLoader classLoader = param.getClassLoader();
         // 禁用系统桌面触碰图标时预加载应用
         if (desktop_prestart) try {
-            Class<?> targetClass = classLoader.loadClass(
-                "android.os.SystemProperties"
-            );
+            Class<?> targetClass = classLoader.loadClass("android.os.SystemProperties");
             Method targetMethod = targetClass.getDeclaredMethod(
                 "getBoolean",
                 String.class,

@@ -8,6 +8,7 @@ public class Entry extends XposedModule {
     static final String TAG = "LittleHook";
     static final boolean
         html_viewer_disable_cloud_control = true,
+        incallui_answer_in_head_up        = true,
         disable_upload_applist            = true,
         disable_flag_secure               = true,
         disable_root_check                = true,
@@ -29,6 +30,10 @@ public class Entry extends XposedModule {
             packageName = param.getPackageName(),
             onTiming = "onPackageReady";
         switch (packageName) {
+            case "com.android.incallui":
+                log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
+                new InCallUiMethod().onPackageReady(this, param);
+                break;
             case "com.lbe.security.miui":
                 log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
                 new LbeSecurityMethod().onPackageReady(this, param);

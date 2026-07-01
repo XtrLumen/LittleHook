@@ -73,9 +73,7 @@ public class FrameworkGlobal {
             }
             SpoofHelper spoofHelper = new SpoofHelper();
 
-            Class<?> transportClass = classLoader.loadClass(
-                "android.content.ContentProvider$Transport"
-            );
+            Class<?> transportClass = classLoader.loadClass("android.content.ContentProvider$Transport");
             for (Method targetMethod : transportClass.getDeclaredMethods()) {
                 String methodName = targetMethod.getName();
                 // 拦截 Settings 单个/列表

@@ -21,9 +21,7 @@ public class LbeSecurityMethod {
         ClassLoader classLoader = param.getClassLoader();
         // 禁止自动关闭自启动
         if (lbe_auto_start) try {
-            Class<?> targetClass = classLoader.loadClass(
-                "com.miui.privacy.autostart.AutoRevokePermissionManager"
-            );
+            Class<?> targetClass = classLoader.loadClass("com.miui.privacy.autostart.AutoRevokePermissionManager");
             Method targetMethod = targetClass.getDeclaredMethod(
                 "lambda$startScheduleASCheck$1",
                 Context.class,

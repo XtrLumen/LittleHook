@@ -22,12 +22,8 @@ public class SecurityCoreMethod {
         ClassLoader classLoader = param.getClassLoader();
         // 恢复并锁定原生软件包安装器
         if (package_installer) try {
-            Class<?> XSpaceConstantClass = classLoader.loadClass(
-                "miui.securityspace.XSpaceConstant"
-            );
-            Field requiredAppsField = XSpaceConstantClass.getDeclaredField(
-                "REQUIRED_APPS"
-            );
+            Class<?> XSpaceConstantClass = classLoader.loadClass("miui.securityspace.XSpaceConstant");
+            Field requiredAppsField = XSpaceConstantClass.getDeclaredField("REQUIRED_APPS");
             requiredAppsField.setAccessible(true);
             @SuppressWarnings("unchecked")
             ArrayList<String> requiredApps = (ArrayList<String>) requiredAppsField.get(null);

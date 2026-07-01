@@ -19,17 +19,13 @@ public class HtmlViewerMethod {
         ClassLoader classLoader = param.getClassLoader();
         // 禁用云控
         if (html_viewer_disable_cloud_control) try {
-            Class<?> targetClass = classLoader.loadClass(
-                "com.android.settings.cloud.JobTask"
-            );
-            Method targetMethod = targetClass.getDeclaredMethod(
-                "updateCloudAllData"
-            );
+            Class<?> targetClass = classLoader.loadClass("com.android.settings.cloud.JobTask");
+            Method targetMethod = targetClass.getDeclaredMethod("updateCloudAllData");
             XposedBridge.hook(targetMethod).intercept(chain -> {
                 return null;
             });
         } catch (Throwable t) {
-            XposedBridge.log(Log.ERROR, TAG, CLASS + "Prohibit auto close AutoStart permission Module Hook failed: ", t);
+            XposedBridge.log(Log.ERROR, TAG, CLASS + "HTML Viewer Disable Cloud Control Module Hook failed: ", t);
         }
         XposedBridge.log(Log.DEBUG, TAG, CLASS + "Hooked");
     }

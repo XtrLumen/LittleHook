@@ -19,9 +19,7 @@ public class ThemeGlobal {
         ClassLoader classLoader = param.getClassLoader();
         // 使 Xiaomi 17 Ultra 标准版识别徕卡版定制主题
         if (leica_theme) try {
-            Class<?> targetClass = classLoader.loadClass(
-                "android.os.SystemProperties"
-            );
+            Class<?> targetClass = classLoader.loadClass("android.os.SystemProperties");
             Method targetMethod = targetClass.getDeclaredMethod(
                 "get",
                 String.class,
