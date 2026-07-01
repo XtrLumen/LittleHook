@@ -7,7 +7,6 @@ import android.util.Log;
 
 import java.util.List;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import io.github.libxposed.api.XposedModule;
@@ -33,12 +32,14 @@ public class InCallUiMethod {
                 int.class,
                 boolean.class
             );
+            final Class<?> PROCESS_MANAGER = classLoader.loadClass("miui.process.ProcessManager");
+            final Method GET_FOREGROUND_INFO = PROCESS_MANAGER.getDeclaredMethod("getForegroundInfo");
+            GET_FOREGROUND_INFO.setAccessible(true);
+
             XposedBridge.hook(targetMethod).intercept(chain -> {
                 boolean fullScreen = (boolean) chain.getArg(3);
                 if (fullScreen) {
-                    Class<?> processManager = classLoader.loadClass("miui.process.ProcessManager");
-                    Method getForegroundInfo = processManager.getDeclaredMethod("getForegroundInfo");
-                    Object foregroundInfo = getForegroundInfo.invoke(null);
+                    Object foregroundInfo = GET_FOREGROUND_INFO.invoke(null);
                     if (foregroundInfo != null) {
                         String topPackage = (String) foregroundInfo.getClass().getDeclaredField("mForegroundPackageName").get(foregroundInfo);
                         if (!"com.miui.home".equals(topPackage)) {

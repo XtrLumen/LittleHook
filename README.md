@@ -15,6 +15,8 @@
 
 - 禁止自动关闭自启动
   - 作用域 `com.lbe.security.miui`
+- 禁止隐藏Google入口
+  - 作用域 `com.android.settings`
 - 禁用HTML查看器云控
   - 作用域 `com.android.htmlviewer`
 - 彻底关闭 Splash Screen

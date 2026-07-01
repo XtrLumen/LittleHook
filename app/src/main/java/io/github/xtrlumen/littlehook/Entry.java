@@ -7,17 +7,18 @@ import io.github.libxposed.api.XposedModule;
 public class Entry extends XposedModule {
     static final String TAG = "LittleHook";
     static final boolean
-        html_viewer_disable_cloud_control = true,
-        incallui_answer_in_head_up        = true,
-        disable_upload_applist            = true,
-        disable_flag_secure               = true,
-        disable_root_check                = true,
-        adb_developer_hide                = true,
-        package_installer                 = true,
-        desktop_prestart                  = true,
-        lbe_auto_start                    = true,
-        splash_screen                     = true,
-        leica_theme                       = true;
+        system_settings_unlock_google_header = true,
+        html_viewer_disable_cloud_control    = true,
+        incallui_answer_in_head_up           = true,
+        disable_upload_applist               = true,
+        disable_flag_secure                  = true,
+        disable_root_check                   = true,
+        adb_developer_hide                   = true,
+        package_installer                    = true,
+        desktop_prestart                     = true,
+        lbe_auto_start                       = true,
+        splash_screen                        = true,
+        leica_theme                          = true;
     @Override
     public void onModuleLoaded(ModuleLoadedParam param) {
     }
@@ -37,6 +38,10 @@ public class Entry extends XposedModule {
             case "com.lbe.security.miui":
                 log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
                 new LbeSecurityMethod().onPackageReady(this, param);
+                break;
+            case "com.android.settings":
+                log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
+                new SettingsMethod().onPackageReady(this, param);
                 break;
             case "com.miui.guardprovider":
                 log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
