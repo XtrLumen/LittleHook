@@ -12,6 +12,8 @@
 4. 完成！
 
 ## 功能
+- 禁止自动关闭自启动
+  - 作用域 `com.lbe.security.miui`
 - 彻底关闭 Splash Screen
   - 作用域 `system`
 - 恢复并锁定原生软件包安装器

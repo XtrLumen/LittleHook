@@ -13,6 +13,7 @@ public class Entry extends XposedModule {
         adb_developer_hide     = true,
         package_installer      = true,
         desktop_prestart       = true,
+        lbe_auto_start         = true,
         splash_screen          = true,
         leica_theme            = true;
     @Override
@@ -27,6 +28,10 @@ public class Entry extends XposedModule {
             packageName = param.getPackageName(),
             onTiming = "onPackageReady";
         switch (packageName) {
+            case "com.lbe.security.miui":
+                log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
+                new LbeSecurityMethod().onPackageReady(this, param);
+                break;
             case "com.miui.guardprovider":
                 log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
                 new GuardProviderMethod().onPackageReady(this, param);
