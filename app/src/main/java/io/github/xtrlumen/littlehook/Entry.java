@@ -7,12 +7,14 @@ import io.github.libxposed.api.XposedModule;
 public class Entry extends XposedModule {
     static final String TAG = "LittleHook";
     static final boolean
-        disable_flag_secure = true,
-        adb_developer_hide  = true,
-        package_installer   = true,
-        desktop_prestart    = true,
-        splash_screen       = true,
-        leica_theme         = true;
+        disable_upload_applist = true,
+        disable_flag_secure    = true,
+        disable_root_check     = true,
+        adb_developer_hide     = true,
+        package_installer      = true,
+        desktop_prestart       = true,
+        splash_screen          = true,
+        leica_theme            = true;
     @Override
     public void onModuleLoaded(ModuleLoadedParam param) {
     }
@@ -25,21 +27,25 @@ public class Entry extends XposedModule {
             packageName = param.getPackageName(),
             onTiming = "onPackageReady";
         switch (packageName) {
-            case "com.android.systemui":
+            case "com.miui.guardprovider":
                 log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
-                new SystemUiMethod().onPackageReady(this, param);
+                new GuardProviderMethod().onPackageReady(this, param);
                 break;
             case "com.miui.securitycore":
                 log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
                 new SecurityCoreMethod().onPackageReady(this, param);
                 break;
-            case "com.android.thememanager":
+            case "com.android.systemui":
                 log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
-                new ThemeGlobal().onPackageReady(this, param);
+                new SystemUiMethod().onPackageReady(this, param);
                 break;
             case "com.miui.home":
                 log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
                 new DesktopGlobal().onPackageReady(this, param);
+                break;
+            case "com.android.thememanager":
+                log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
+                new ThemeGlobal().onPackageReady(this, param);
                 break;
             default:
                 log(Log.DEBUG, TAG, onTiming + " Ignored " + packageName);

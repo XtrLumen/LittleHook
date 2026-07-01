@@ -1,11 +1,13 @@
 import java.util.Properties
 
 plugins {
+    id("org.jetbrains.kotlin.android")
     id("com.android.application")
 }
 
 dependencies {
     compileOnly ("io.github.libxposed:api:101.0.0")
+    implementation("org.luckypray:dexkit:2.2.0")
 }
 
 val properties = Properties()
