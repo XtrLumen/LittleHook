@@ -23,7 +23,7 @@ public class DesktopGlobal {
             Method targetMethod = targetClass.getDeclaredMethod(
                 "getBoolean",
                 String.class,
-                Boolean.TYPE
+                Boolean.class
             );
             XposedBridge.hook(targetMethod).intercept(chain -> {
                 Object result = chain.proceed();

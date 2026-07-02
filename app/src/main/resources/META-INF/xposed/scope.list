@@ -5,6 +5,7 @@ com.miui.guardprovider
 com.miui.securitycore
 com.android.systemui
 com.miui.home
+com.android.providers.downloads
 com.android.photopicker
 com.android.thememanager
 system

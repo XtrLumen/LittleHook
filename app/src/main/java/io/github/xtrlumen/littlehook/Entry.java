@@ -11,6 +11,7 @@ public class Entry extends XposedModule {
         html_viewer_disable_cloud_control    = true,
         incallui_answer_in_head_up           = true,
         incallui_answer_in_head_up_desktop   = false,
+        various_fuck_xlDownload              = true,
         disable_upload_applist               = true,
         disable_flag_secure                  = true,
         disable_root_check                   = true,
@@ -60,6 +61,10 @@ public class Entry extends XposedModule {
             case "com.miui.home":
                 log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
                 new DesktopGlobal().onPackageReady(this, param);
+                break;
+            case "com.android.providers.downloads":
+                log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
+                new DownloadsMethod().onPackageReady(this, param);
                 break;
             case "com.android.photopicker":
                 log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);

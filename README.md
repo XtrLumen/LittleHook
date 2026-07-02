@@ -23,6 +23,8 @@
   - 作用域 `com.android.htmlviewer`
 - 彻底关闭 Splash Screen
   - 作用域 `system`
+- 阻止创建.xlDownload文件夹
+  - 作用域 `com.android.providers.downloads`
 - 恢复并锁定原生软件包安装器
   - 作用域 `system` `com.miui.securitycore`
 - 全局伪装开发者相关选项为关闭
