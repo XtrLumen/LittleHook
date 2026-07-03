@@ -35,58 +35,58 @@ public class Entry extends XposedModule {
             onTiming = "onPackageReady";
         switch (packageName) {
             case "com.android.htmlviewer":
-                log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
+                log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
                 new HtmlViewerMethod().onPackageReady(this, param);
                 break;
             case "com.android.incallui":
-                log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
+                log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
                 new InCallUiMethod().onPackageReady(this, param);
                 break;
             case "com.android.photopicker":
-                log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
+                log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
                 new PhotoPickerMethod().onPackageReady(this, param);
                 break;
             case "com.android.providers.downloads":
-                log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
+                log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
                 new DownloadsMethod().onPackageReady(this, param);
                 break;
             case "com.android.settings":
-                log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
+                log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
                 new SettingsMethod().onPackageReady(this, param);
                 break;
             case "com.android.systemui":
-                log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
+                log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
                 new SystemUiMethod().onPackageReady(this, param);
                 break;
             case "com.android.thememanager":
-                log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
+                log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
                 new ThemeGlobal().onPackageReady(this, param);
                 break;
             case "com.lbe.security.miui":
-                log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
+                log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
                 new LbeSecurityMethod().onPackageReady(this, param);
                 break;
             case "com.miui.guardprovider":
-                log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
+                log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
                 new GuardProviderMethod().onPackageReady(this, param);
                 break;
             case "com.miui.home":
-                log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
+                log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
                 new DesktopGlobal().onPackageReady(this, param);
                 break;
             case "com.miui.securitycore":
-                log(Log.DEBUG, TAG, onTiming + " Loaded into " + packageName);
+                log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
                 new SecurityCoreMethod().onPackageReady(this, param);
                 break;
             default:
-                log(Log.DEBUG, TAG, onTiming + " Ignored " + packageName);
+                log(Log.DEBUG, TAG, "Ignored " + packageName + " From " + onTiming);
                 break;
         }
     }
     @Override
     public void onSystemServerStarting(SystemServerStartingParam param) {
         String onTiming = "onSystemServerStarting";
-        log(Log.DEBUG, TAG, onTiming + " Loaded into system");
+        log(Log.DEBUG, TAG, "Loaded into system From " + onTiming);
         new FrameworkMethod().onSystemServerStarting(this, param);
         new FrameworkGlobal().onSystemServerStarting(this, param);
     }
