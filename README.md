@@ -13,6 +13,7 @@
 
 ## 功能
 
+
 - 强制原生文件选择器
   - 作用域 `system` `com.android.photopicker`
 - 禁止自动关闭自启动
@@ -23,6 +24,8 @@
   - 作用域 `com.android.htmlviewer`
 - 彻底关闭 Splash Screen
   - 作用域 `system`
+- 隐藏最近任务的清理按钮
+  - 作用域 `com.miui.home`
 - 阻止创建.xlDownload文件夹
   - 作用域 `com.android.providers.downloads`
 - 恢复并锁定原生软件包安装器

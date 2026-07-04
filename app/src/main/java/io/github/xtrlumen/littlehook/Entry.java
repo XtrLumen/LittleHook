@@ -18,6 +18,7 @@ public class Entry extends XposedModule {
         adb_developer_hide                   = true,
         native_file_picker                   = true,
         package_installer                    = true,
+        desktop_hide_clear_button            = true,
         desktop_prestart                     = true,
         lbe_auto_start                       = true,
         splash_screen                        = true,
@@ -73,6 +74,7 @@ public class Entry extends XposedModule {
             case "com.miui.home":
                 log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
                 new DesktopGlobal().onPackageReady(this, param);
+                new DesktopMethod().onPackageReady(this, param);
                 break;
             case "com.miui.securitycore":
                 log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
