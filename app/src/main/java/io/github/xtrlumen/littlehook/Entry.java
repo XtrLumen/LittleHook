@@ -18,6 +18,7 @@ public class Entry extends XposedModule {
         adb_developer_hide                   = true,
         native_file_picker                   = true,
         package_installer                    = true,
+        desktop_real_memory_usage            = true,
         desktop_hide_clear_button            = true,
         desktop_prestart                     = true,
         lbe_auto_start                       = true,

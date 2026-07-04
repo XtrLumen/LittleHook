@@ -16,7 +16,6 @@ public class DesktopGlobal {
             XposedBridge.log(Log.DEBUG, TAG, CLASS + "Ignored Hook");
             return;
         }
-
         // 禁用系统桌面触碰图标时预加载应用
         if (desktop_prestart) try {
             Class<?> targetClass = classLoader.loadClass("android.os.SystemProperties");
