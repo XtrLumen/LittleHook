@@ -16,12 +16,11 @@ import static io.github.xtrlumen.littlehook.Entry.*;
 
 public class InCallUiMethod {
     private static final String CLASS = "[InCallUiMethod] ";
-    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param) {
+    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param, ClassLoader classLoader) {
         if (!(incallui_answer_in_head_up)) {
             XposedBridge.log(Log.DEBUG, TAG, CLASS + "Ignored Hook");
             return;
         }
-        ClassLoader classLoader = param.getClassLoader();
         // 从浮动通知接听电话时不进入全屏
         if (incallui_answer_in_head_up) try {
             Class<?> targetClass = classLoader.loadClass("com.android.incallui.InCallPresenter");

@@ -26,12 +26,11 @@ import static io.github.xtrlumen.littlehook.Entry.*;
 
 public class FrameworkMethod {
     private static final String CLASS = "[FrameworkMethod] ";
-    public void onSystemServerStarting(XposedModule XposedBridge, SystemServerStartingParam param) {
+    public void onSystemServerStarting(XposedModule XposedBridge, SystemServerStartingParam param, ClassLoader classLoader) {
         if (!(disable_flag_secure || native_file_picker || package_installer || splash_screen)) {
             XposedBridge.log(Log.DEBUG, TAG, CLASS + "Ignored Hook");
             return;
         }
-        ClassLoader classLoader = param.getClassLoader();
         // 在不允许截图的应用中强制允许截图
         if (disable_flag_secure) try {
             class HookHelper {

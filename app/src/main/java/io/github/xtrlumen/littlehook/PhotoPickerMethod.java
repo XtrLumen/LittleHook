@@ -13,12 +13,11 @@ import static io.github.xtrlumen.littlehook.Entry.*;
 
 public class PhotoPickerMethod {
     private static final String CLASS = "[PhotoPickerMethod] ";
-    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param) {
+    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param, ClassLoader classLoader) {
         if (!(native_file_picker)) {
             XposedBridge.log(Log.DEBUG, TAG, CLASS + "Ignored Hook");
             return;
         }
-        ClassLoader classLoader = param.getClassLoader();
         // 强制原生文件选择器
         if (native_file_picker) try {
             Class<?> deviceConfigClass = classLoader.loadClass("android.provider.DeviceConfig");

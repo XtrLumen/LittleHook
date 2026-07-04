@@ -11,12 +11,11 @@ import static io.github.xtrlumen.littlehook.Entry.*;
 
 public class DesktopMethod {
     private static final String CLASS = "[DesktopMethod] ";
-    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param) {
+    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param, ClassLoader classLoader) {
         if (!(desktop_hide_clear_button)) {
             XposedBridge.log(Log.DEBUG, TAG, CLASS + "Ignored Hook");
             return;
         }
-        ClassLoader classLoader = param.getClassLoader();
         // 隐藏最近任务的清理按钮
         if (desktop_hide_clear_button) try {
             Class<?> targetClass;

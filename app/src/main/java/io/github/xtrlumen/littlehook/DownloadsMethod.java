@@ -16,12 +16,11 @@ import static io.github.xtrlumen.littlehook.Entry.*;
 
 public class DownloadsMethod {
     private static final String CLASS = "[DownloadsMethod] ";
-    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param) {
+    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param, ClassLoader classLoader) {
         if (!(various_fuck_xlDownload)) {
             XposedBridge.log(Log.DEBUG, TAG, CLASS + "Ignored Hook");
             return;
         }
-        ClassLoader classLoader = param.getClassLoader();
         // 阻止创建.xlDownload文件夹
         if (various_fuck_xlDownload) try {
             Class<?> xlConfigClass = classLoader.loadClass("com.android.providers.downloads.config.XLConfig");

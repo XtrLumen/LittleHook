@@ -14,12 +14,11 @@ import static io.github.xtrlumen.littlehook.Entry.*;
 
 public class SystemUiMethod {
     private static final String CLASS = "[SystemUiMethod] ";
-    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param) {
+    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param, ClassLoader classLoader) {
         if (!(disable_flag_secure)) {
             XposedBridge.log(Log.DEBUG, TAG, CLASS + "Ignored Hook");
             return;
         }
-        ClassLoader classLoader = param.getClassLoader();
         // 在不允许截图的应用中强制允许截图
         if (disable_flag_secure) try {
             Method method = Activity.class.getDeclaredMethod("onResume");

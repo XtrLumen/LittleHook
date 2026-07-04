@@ -11,12 +11,12 @@ import static io.github.xtrlumen.littlehook.Entry.*;
 
 public class DesktopGlobal {
     private static final String CLASS = "[DesktopGlobal] ";
-    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param) {
+    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param, ClassLoader classLoader) {
         if (!(desktop_prestart)) {
             XposedBridge.log(Log.DEBUG, TAG, CLASS + "Ignored Hook");
             return;
         }
-        ClassLoader classLoader = param.getClassLoader();
+
         // 禁用系统桌面触碰图标时预加载应用
         if (desktop_prestart) try {
             Class<?> targetClass = classLoader.loadClass("android.os.SystemProperties");

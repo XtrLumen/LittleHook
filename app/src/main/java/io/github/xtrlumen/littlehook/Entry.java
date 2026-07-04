@@ -34,51 +34,53 @@ public class Entry extends XposedModule {
         String
             packageName = param.getPackageName(),
             onTiming = "onPackageReady";
+        ClassLoader
+            classLoader = param.getClassLoader();
         switch (packageName) {
             case "com.android.htmlviewer":
                 log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
-                new HtmlViewerMethod().onPackageReady(this, param);
+                new HtmlViewerMethod().onPackageReady(this, param, classLoader);
                 break;
             case "com.android.incallui":
                 log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
-                new InCallUiMethod().onPackageReady(this, param);
+                new InCallUiMethod().onPackageReady(this, param, classLoader);
                 break;
             case "com.android.photopicker":
                 log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
-                new PhotoPickerMethod().onPackageReady(this, param);
+                new PhotoPickerMethod().onPackageReady(this, param, classLoader);
                 break;
             case "com.android.providers.downloads":
                 log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
-                new DownloadsMethod().onPackageReady(this, param);
+                new DownloadsMethod().onPackageReady(this, param, classLoader);
                 break;
             case "com.android.settings":
                 log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
-                new SettingsMethod().onPackageReady(this, param);
+                new SettingsMethod().onPackageReady(this, param, classLoader);
                 break;
             case "com.android.systemui":
                 log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
-                new SystemUiMethod().onPackageReady(this, param);
+                new SystemUiMethod().onPackageReady(this, param, classLoader);
                 break;
             case "com.android.thememanager":
                 log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
-                new ThemeGlobal().onPackageReady(this, param);
+                new ThemeGlobal().onPackageReady(this, param, classLoader);
                 break;
             case "com.lbe.security.miui":
                 log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
-                new LbeSecurityMethod().onPackageReady(this, param);
+                new LbeSecurityMethod().onPackageReady(this, param, classLoader);
                 break;
             case "com.miui.guardprovider":
                 log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
-                new GuardProviderMethod().onPackageReady(this, param);
+                new GuardProviderMethod().onPackageReady(this, param, classLoader);
                 break;
             case "com.miui.home":
                 log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
-                new DesktopGlobal().onPackageReady(this, param);
-                new DesktopMethod().onPackageReady(this, param);
+                new DesktopGlobal().onPackageReady(this, param, classLoader);
+                new DesktopMethod().onPackageReady(this, param, classLoader);
                 break;
             case "com.miui.securitycore":
                 log(Log.DEBUG, TAG, "Loaded into " + packageName + " From " + onTiming);
-                new SecurityCoreMethod().onPackageReady(this, param);
+                new SecurityCoreMethod().onPackageReady(this, param, classLoader);
                 break;
             default:
                 log(Log.DEBUG, TAG, "Ignored " + packageName + " From " + onTiming);
@@ -88,8 +90,9 @@ public class Entry extends XposedModule {
     @Override
     public void onSystemServerStarting(SystemServerStartingParam param) {
         String onTiming = "onSystemServerStarting";
+        ClassLoader classLoader = param.getClassLoader();
         log(Log.DEBUG, TAG, "Loaded into system From " + onTiming);
-        new FrameworkMethod().onSystemServerStarting(this, param);
-        new FrameworkGlobal().onSystemServerStarting(this, param);
+        new FrameworkMethod().onSystemServerStarting(this, param, classLoader);
+        new FrameworkGlobal().onSystemServerStarting(this, param, classLoader);
     }
 }

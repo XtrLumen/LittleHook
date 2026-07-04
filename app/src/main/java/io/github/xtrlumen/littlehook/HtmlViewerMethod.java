@@ -11,12 +11,11 @@ import static io.github.xtrlumen.littlehook.Entry.*;
 
 public class HtmlViewerMethod {
     private static final String CLASS = "[HtmlViewerMethod] ";
-    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param) {
+    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param, ClassLoader classLoader) {
         if (!(html_viewer_disable_cloud_control)) {
             XposedBridge.log(Log.DEBUG, TAG, CLASS + "Ignored Hook");
             return;
         }
-        ClassLoader classLoader = param.getClassLoader();
         // 禁用云控
         if (html_viewer_disable_cloud_control) try {
             Class<?> targetClass = classLoader.loadClass("com.android.settings.cloud.JobTask");

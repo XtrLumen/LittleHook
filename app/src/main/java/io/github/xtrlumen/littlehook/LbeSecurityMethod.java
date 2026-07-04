@@ -13,12 +13,11 @@ import static io.github.xtrlumen.littlehook.Entry.*;
 
 public class LbeSecurityMethod {
     private static final String CLASS = "[LbeSecurityMethod] ";
-    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param) {
+    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param, ClassLoader classLoader) {
         if (!(lbe_auto_start)) {
             XposedBridge.log(Log.DEBUG, TAG, CLASS + "Ignored Hook");
             return;
         }
-        ClassLoader classLoader = param.getClassLoader();
         // 禁止自动关闭自启动
         if (lbe_auto_start) try {
             Class<?> targetClass = classLoader.loadClass("com.miui.privacy.autostart.AutoRevokePermissionManager");

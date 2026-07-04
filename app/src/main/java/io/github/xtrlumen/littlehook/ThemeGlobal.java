@@ -11,12 +11,11 @@ import static io.github.xtrlumen.littlehook.Entry.*;
 
 public class ThemeGlobal {
     private static final String CLASS = "[ThemeGlobal] ";
-    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param) {
+    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param, ClassLoader classLoader) {
         if (!(leica_theme)) {
             XposedBridge.log(Log.DEBUG, TAG, CLASS + "Ignored Hook");
             return;
         }
-        ClassLoader classLoader = param.getClassLoader();
         // 使 Xiaomi 17 Ultra 标准版识别徕卡版定制主题
         if (leica_theme) try {
             Class<?> targetClass = classLoader.loadClass("android.os.SystemProperties");

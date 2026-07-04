@@ -16,12 +16,11 @@ import static io.github.xtrlumen.littlehook.Entry.*;
 public class SettingsMethod {
     private static final String CLASS = "[SettingsMethod] ";
 
-    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param) {
+    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param, ClassLoader classLoader) {
         if (!(system_settings_unlock_google_header)) {
             XposedBridge.log(Log.DEBUG, TAG, CLASS + "Ignored Hook");
             return;
         }
-        ClassLoader classLoader = param.getClassLoader();
         // 禁止隐藏Google入口
         if (system_settings_unlock_google_header) try {
             Class<?> mMiuiSettings = classLoader.loadClass("com.android.settings.MiuiSettings");

@@ -24,12 +24,11 @@ import static io.github.xtrlumen.littlehook.Entry.*;
 
 public class FrameworkGlobal {
     private static final String CLASS = "[FrameworkGlobal] ";
-    public void onSystemServerStarting(XposedModule XposedBridge, SystemServerStartingParam param) {
+    public void onSystemServerStarting(XposedModule XposedBridge, SystemServerStartingParam param, ClassLoader classLoader) {
         if (!(adb_developer_hide)) {
             XposedBridge.log(Log.DEBUG, TAG, CLASS + "Ignored Hook");
             return;
         }
-        ClassLoader classLoader = param.getClassLoader();
         // 全局伪装开发者相关选项为关闭
         if (adb_developer_hide) try {
             String notFound = "__NOTFOUND__";

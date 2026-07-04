@@ -20,12 +20,11 @@ import static io.github.xtrlumen.littlehook.Entry.*;
 
 public class GuardProviderMethod {
     private static final String CLASS = "[GuardProviderMethod] ";
-    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param) {
+    public void onPackageReady(XposedModule XposedBridge, PackageReadyParam param, ClassLoader classLoader) {
         if (!(disable_root_check || disable_upload_applist)) {
             XposedBridge.log(Log.DEBUG, TAG, CLASS + "Ignored Hook");
             return;
         }
-        ClassLoader classLoader = param.getClassLoader();
         // 禁用环境检查
         if (disable_root_check) try {
             System.loadLibrary("dexkit");
