@@ -36,6 +36,7 @@ public class FrameworkGlobal {
             String notFound = "__NOTFOUND__";
             class SpoofHelper {
                 final Set<String> WHITELIST = Set.of(
+                    "com.android.settings",
                     "com.android.shell",
                     "android",
                     "root"
