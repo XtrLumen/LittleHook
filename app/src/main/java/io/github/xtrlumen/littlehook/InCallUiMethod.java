@@ -1,6 +1,9 @@
 
 package io.github.xtrlumen.littlehook;
 
+import miui.process.ProcessManager;
+import miui.process.ForegroundInfo;
+
 import android.content.Context;
 
 import android.util.Log;
@@ -31,25 +34,14 @@ public class InCallUiMethod {
                 int.class,
                 boolean.class
             );
-            Class<?> processManager;
-            Method getForegroundInfo;
-            if (incallui_answer_in_head_up_desktop) {
-                processManager = classLoader.loadClass("miui.process.ProcessManager");
-                getForegroundInfo = processManager.getDeclaredMethod("getForegroundInfo");
-                getForegroundInfo.setAccessible(true);
-            } else {
-                processManager = null;
-                getForegroundInfo = null;
-            }
 
             XposedBridge.hook(targetMethod).intercept(chain -> {
                 if (incallui_answer_in_head_up_desktop) {
                     boolean fullScreen = (boolean) chain.getArg(3);
                     if (fullScreen) {
-                        Object foregroundInfo = getForegroundInfo.invoke(null);
+                        ForegroundInfo foregroundInfo = ProcessManager.getForegroundInfo();
                         if (foregroundInfo != null) {
-                            String topPackage = (String) foregroundInfo.getClass().getDeclaredField("mForegroundPackageName").get(foregroundInfo);
-                            if (!"com.miui.home".equals(topPackage)) {
+                            if (!("com.miui.home".equals(foregroundInfo.mForegroundPackageName))) {
                                 List<Object> Args = chain.getArgs();
                                 Object[] newArgs = Args.toArray();
                                 newArgs[3] = false;
