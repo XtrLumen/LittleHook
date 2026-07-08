@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    compileOnly ("io.github.libxposed:api:101.0.0")
+    compileOnly("io.github.libxposed:api:101.0.0")
     compileOnly(project(":stub"))
     implementation("org.luckypray:dexkit:2.2.0")
 }
@@ -67,6 +67,12 @@ android {
                 "lib/armeabi-v7a/libdexkit.so",
                 "lib/x86/libdexkit.so",
                 "lib/x86_64/libdexkit.so"
+            )
+        }
+        resources {
+            excludes += setOf(
+                "kotlin-tooling-metadata.json",
+                "kotlin/**"
             )
         }
     }

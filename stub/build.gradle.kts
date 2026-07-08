@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "android"
+    namespace = "stub"
     buildToolsVersion = "36.0.0"
     compileSdk = 36
     defaultConfig {
